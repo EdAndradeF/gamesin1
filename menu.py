@@ -23,6 +23,7 @@ def texto(txt, pos, cor=branco):
 
 def jogo():
 
+    importado_i3 = False
     importado_sc = False
     corfundo = preto
     play = True
@@ -32,7 +33,7 @@ def jogo():
             tela.fill(corfundo)
 
             mouse_pos = py.mouse.get_pos()
-            # mouse_pos[0] == largura ||| mouse_pos[1] == largura
+            # mouse_pos[0] == altura ||| mouse_pos[1] == largura
 
             # botao para fechar o jogo
             saida = texto('Quit', (width / 2, height / 2))
@@ -44,7 +45,7 @@ def jogo():
             if cobra.top < mouse_pos[1] < cobra.bottom and cobra.left < mouse_pos[0] < cobra.right:
                 cobra = texto('Snake', ((width / 2), (height / 2) - 35), verde)
 
-            # todo botao do jogo Indie 3000
+            # botao do jogo Indie 3000
             indie = texto('Indie 3000', (width / 2, (height / 2) - 70))
             if indie.top < mouse_pos[1] < indie.bottom and indie.left < mouse_pos[0] < indie.right:
                 indie = texto('Indie 3000', (width / 2, (height / 2) - 70), verde)
@@ -58,7 +59,6 @@ def jogo():
                         play = False
 
                 if event.type == py.MOUSEBUTTONDOWN:
-                    print(mouse_pos)
                         # FECHA O JOGO
                     if saida.top < mouse_pos[1] < saida.bottom and saida.left < mouse_pos[0] < saida.right:
                         play = False
@@ -72,16 +72,13 @@ def jogo():
                         else:
                             sc.gameLoop()
 
-                        #  todo criar jogo
-                    # if indie.top < mouse_pos[1] < indie.bottom and indie.left < mouse_pos[0] < indie.right:
-                    #     if not importado_sc:
-                    #         import indie_3000 as i3
-                    #         importado_i3 = True
-                    #     else:
-                    #         i3.gameLoop()
-
-
-
+                        # importa e roda o jogo Indie 3000
+                    if indie.top < mouse_pos[1] < indie.bottom and indie.left < mouse_pos[0] < indie.right:
+                        if not importado_i3:
+                            import indie_3000 as i3
+                            importado_i3 = True
+                        else:
+                            i3.game_loop()
 
             py.display.flip()
 
