@@ -1,27 +1,27 @@
 import pygame as py
+import funks
 
 py.init()
 
 preto = 0, 0, 0
 branco = 255, 255, 255
 verde = 0, 255, 0
-width, height = 500, 1000
 
+width, height = 500, 1000
 tela = py.display.set_mode((width, height))
 
 fonte_padrao = py.font.SysFont('Arial', 30)
 
-# todo padronizar funcao para todas as telas
+
+# todo feito **padronizar funcao para todas as telas**
 def texto(txt, pos, cor=branco):
+        #ler documentacao em funks.py
     texto = fonte_padrao.render(txt, True, cor)
     ret = tela.blit(texto, pos)
-    # topo, baixo = ret.top , ret.bottom
-    # esquerda, direita = ret.left, ret.right
-
     return ret
 
 
-def jogo():
+def jogo(): #Funcao para iniciar a tela inicial do jogo
 
     importado_i3 = False
     importado_sc = False
@@ -29,9 +29,10 @@ def jogo():
     play = True
 
     while True:
+
         while play:
             tela.fill(corfundo)
-
+            #  pinta o fundo
             mouse_pos = py.mouse.get_pos()
             # mouse_pos[0] == altura ||| mouse_pos[1] == largura
 
@@ -50,7 +51,7 @@ def jogo():
             if indie.top < mouse_pos[1] < indie.bottom and indie.left < mouse_pos[0] < indie.right:
                 indie = texto('Indie 3000', (width / 2, (height / 2) - 70), verde)
 
-                    #todo funcionalizar
+                    #todo funcionalizar EVENTOS DE COMANDOS
             for event in py.event.get():
                 if event.type == py.QUIT:
                     play = False
@@ -59,7 +60,7 @@ def jogo():
                         play = False
 
                 if event.type == py.MOUSEBUTTONDOWN:
-                        # FECHA O JOGO
+                        # VOLTA PARA AREA DE TRABALHO
                     if saida.top < mouse_pos[1] < saida.bottom and saida.left < mouse_pos[0] < saida.right:
                         play = False
 
@@ -71,18 +72,23 @@ def jogo():
                             importado_sc = True
                         else:
                             sc.gameLoop()
+                            jogo()
 
-                        # importa e roda o jogo Indie 3000
+                        # PLAY INDIE 3000
                     if indie.top < mouse_pos[1] < indie.bottom and indie.left < mouse_pos[0] < indie.right:
+                        # importa e roda o jogo Indie 3000
                         if not importado_i3:
                             import indie_3000 as i3
                             importado_i3 = True
                         else:
                             i3.game_loop()
+                            jogo()
 
             py.display.flip()
 
         py.quit()
         quit()
+
+
 
 jogo()
