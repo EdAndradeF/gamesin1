@@ -80,8 +80,6 @@ clock = py.time.Clock()
 
 
 
-
-
 def game_loop():
     p1 = Player(rosa, 200, 800)
     tx_count = 0
@@ -108,7 +106,6 @@ def game_loop():
                         return
                     if event.key == py.K_RETURN:
                         game_loop()
-
 
 
         dis.fill(preto)

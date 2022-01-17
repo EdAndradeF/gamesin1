@@ -19,9 +19,11 @@ amarelo = (255, 255, 102)
 arial = py.font.SysFont("arial", 20)
 font_style = py.font.SysFont("bahnschrift", 25)
 
+
 #funcao de impressao de texto
 def texto(txt, pos, tela, font=arial,cor=branco):
-    '''                       recebe os parametros para criar uma caixa de txt na tela
+    '''
+                            recebe os parametros para criar uma caixa de txt na tela
                               e returna o objeto para tratamento
     :param font: font para ser redenrizada
     :param txt: texto a ser imprimido
@@ -37,6 +39,7 @@ def texto(txt, pos, tela, font=arial,cor=branco):
 
 # width, height = 500, 1000
 def tela(caption, tamanho=(500, 1000)):
+
     tela = py.display.set_mode(tamanho)
     py.display.set_caption(caption)
     return tela

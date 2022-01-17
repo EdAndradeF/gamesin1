@@ -48,11 +48,11 @@ def message(msg, color):
 
 
 
-game_close = False
+
 
 def gameLoop():
     game_over = False
-    global game_close
+
     game_close = True
 
     cor_verme = [225, 255, 255]
@@ -106,10 +106,23 @@ def gameLoop():
                     if event.key == pygame.K_q:
                         return
                     if event.key == pygame.K_RETURN:
+
                         game_close = False
 
+                        cor_verme = [225, 255, 255]
+
+                        x1 = dis_width / 2
+                        y1 = dis_height / 2
+
+                        x1_change = 0
+                        y1_change = 0
 
 
+                        snake_List = []
+                        Length_of_snake = 1
+                        snake_speed = 15
+                        foodx = round(random.randrange(0, dis_width - snake_block) / 10.0) * 10.0
+                        foody = round(random.randrange(0, dis_height - snake_block) / 10.0) * 10.0
 
 
 
